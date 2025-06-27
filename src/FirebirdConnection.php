@@ -18,7 +18,8 @@ class FirebirdConnection extends DatabaseConnection
      */
     protected function getDefaultQueryGrammar()
     {
-        return new FirebirdQueryGrammar;
+        // Provide table prefix to Grammar constructor
+        return new FirebirdQueryGrammar($this);
     }
 
     /**
@@ -52,7 +53,7 @@ class FirebirdConnection extends DatabaseConnection
      */
     protected function getDefaultSchemaGrammar()
     {
-        return $this->withTablePrefix(new FirebirdSchemaGrammar);
+        return new FirebirdSchemaGrammar($this);
     }
 
     /**
